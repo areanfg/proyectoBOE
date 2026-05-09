@@ -14,7 +14,7 @@ from sqlalchemy import (
 # DESCARGAR XML
 # ==========================================
 
-URL = "https://www.boe.es/diario_boe/xml.php?id=BOE-A-2025-9203"
+URL = "https://www.boe.es/diario_boe/xml.php?id=BOE-A-2021-2658"
 
 response = requests.get(URL)
 response.raise_for_status()
@@ -25,7 +25,7 @@ root = etree.fromstring(response.content)
 # EXTRAER TABLA
 # ==========================================
 
-tabla = root.xpath(".//table[@class='tabla_girada']")[0]
+tabla = root.xpath(".//table[contains(@class,'tabla_girada')]")[0]
 
 filas = tabla.xpath(".//tr")
 
@@ -60,8 +60,8 @@ metadata = MetaData()
 # DEFINIR TABLA
 # ==========================================
 
-nombramientos = Table(
-    "nombramientos",
+nombrados = Table(
+    "nombrados",
     metadata,
 
     Column("id", Integer, primary_key=True, autoincrement=True),
@@ -116,7 +116,7 @@ with engine.begin() as conn:
         # ==================================
 
         conn.execute(
-            nombramientos.insert().values(
+            nombrados.insert().values(
 
                 nops=fila[0],
                 doc_iden=fila[1],

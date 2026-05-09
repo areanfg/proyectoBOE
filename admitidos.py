@@ -6,11 +6,11 @@ from sqlalchemy import create_engine
 
 pdfs = [
     {
-        "path": "/workspaces/proyectoBOE/DATOS/TIC-ADMITIDOS-LIBRE-GENERAL_6M3ILFPV2K_154AB89SD658.pdf",
+        "path": "/workspaces/proyectoBOE/DATOS/TIC-L-ADM-SA-ALF_GE_154AB89SD658.pdf",
         "flag": "GENERAL"
     },
     {
-        "path": "/workspaces/proyectoBOE/DATOS/TIC-ADMITIDOS-LIBRE-CRD_27598SGPHW_154AB89SD658.pdf",
+        "path": "/workspaces/proyectoBOE/DATOS/TIC-L-ADM-SA-ALF_CRD_154AB89SD658.pdf",
         "flag": "CUPO"
     }
 ]
@@ -69,21 +69,59 @@ for pdf in pdfs:
 
             # separar provincia usando lista conocida
             provincias = [
-                "MADRID",
-                "VALENCIA",
-                "MURCIA",
-                "SEVILLA",
-                "MALAGA",
-                "BARCELONA",
-                "PALENCIA",
-                "ASTURIAS",
                 "A CORUÑA",
                 "ALAVA",
-                "LAS PALMAS",
-                "SANTA CRUZ DE TENERIFE",
+                "ALBACETE",
+                "ALICANTE",
+                "ALMERIA",
+                "ASTURIAS",
+                "AVILA",
+                "BADAJOZ",
+                "BARCELONA",
+                "BURGOS",
+                "CACERES",
+                "CADIZ",
+                "CANTABRIA",
+                "CASTELLON",
+                "CEUTA",
+                "CIUDAD REAL",
+                "CORDOBA",
+                "CUENCA",
+                "GIRONA",
+                "GRANADA",
+                "GUADALAJARA",
+                "GIPUZKOA",
+                "HUELVA",
+                "HUESCA",
                 "ILLES BALEARS",
+                "JAEN",
+                "LA RIOJA",
+                "LAS PALMAS",
+                "LEON",
+                "LLEIDA",
+                "LUGO",
+                "MADRID",
+                "MALAGA",
+                "MELILLA",
+                "MURCIA",
+                "NAVARRA",
+                "OURENSE",
+                "PALENCIA",
+                "PONTEVEDRA",
+                "SALAMANCA",
+                "SANTA CRUZ DE TENERIFE",
+                "SEGOVIA",
+                "SEVILLA",
+                "SORIA",
+                "TARRAGONA",
+                "TERUEL",
+                "TOLEDO",
+                "VALENCIA",
+                "VALLADOLID",
+                "BIZKAIA",
+                "ZAMORA",
                 "ZARAGOZA"
-            ]
+         ]
 
             provincia = ""
 
@@ -146,7 +184,7 @@ print(df_admitidos.head())
 df_admitidos.to_sql(
     "admitidos",
     engine,
-    if_exists="replace",
+    if_exists="append",
     index=False
 )
 
